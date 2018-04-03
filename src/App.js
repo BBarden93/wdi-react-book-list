@@ -7,7 +7,7 @@ import './App.css'
 // OUR TOP 100 BOOKS IS A JSON ARRAY THAT CAN BE IMPORTED AND IS PARSED AUTOMATICALLY!
 import bookList from './books.json'
 // try uncommenting the following line and looking at the list in your browser console:
-// console.log(bookList)
+console.log(bookList)
 
 class App extends Component {
 
