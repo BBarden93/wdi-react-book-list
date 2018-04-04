@@ -1,14 +1,31 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 class Books extends React.Component {
+  
+  state = {filter: ''}
+
+  handleFilterChange(evt){
+    this.setState({filter: evt.target.value})
+  }
+
   render() {
+    const {books} = this.props 
+    const filteredBooks = books.filter((b) => {
+      return b.title.toLowerCase().includes(this.state.filter.toLocaleLowerCase())
+    })
     return (
       <div className="Books">
-        <input className="input is-large" type="text" placeholder="Filter The List" />
+        <input onChange={this.handleFilterChange.bind(this)} className="input is-large" type="text" placeholder="Filter The List" />
         <ul className="menu-list">
-          <li><a href="#">The Possessed</a></li>
-          <li><a href="#">Middlemarch</a></li>
-          <li><a href="#">Invisible Man</a></li>
+          {books.map((b) => {
+            return (
+              <Link key={b._id} to={`/books/${b._id}`}>{b.title}</Link>
+              
+              // <li><a href="#">{b.title}</a></li>
+            )
+          })}
+          
         </ul>
       </div>
     )
